@@ -11,7 +11,11 @@ import UIKit
 class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
     let baseURL = "https://apiv2.bitcoinaverage.com/indices/global/ticker/BTC"
+    
     let currencyArray = ["AUD", "BRL","CAD","CNY","EUR","GBP","HKD","IDR","ILS","INR","JPY","MXN","NOK","NZD","PLN","RON","RUB","SEK","SGD","USD","ZAR"]
+    
+    let currencyValue = [1.27, 3.19, 1.28, 6.66]
+    
     var finalURL = ""
 
     //Pre-setup IBOutlets
@@ -45,7 +49,10 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        print(row)
+        print(currencyArray[row])
+        
+        finalURL = baseURL + currencyArray[row]
+        print(finalURL)
     }
     
     
