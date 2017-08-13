@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
@@ -15,6 +17,8 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     let currencyArray = ["AUD", "BRL","CAD","CNY","EUR","GBP","HKD","IDR","ILS","INR","JPY","MXN","NOK","NZD","PLN","RON","RUB","SEK","SGD","USD","ZAR"]
     
     var finalURL = ""
+    
+    let currencyJSON = ""
 
     //Pre-setup IBOutlets
     @IBOutlet weak var bitcoinPriceLabel: UILabel!
@@ -51,6 +55,8 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         
         finalURL = baseURL + currencyArray[row]
         print(finalURL)
+        
+        getCurrencyData(url: finalURL)
     }
     
     
@@ -67,12 +73,12 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
                 if response.result.isSuccess {
                     
                     print("Sucess! Got the curency data")
-                    let currencyJSON : JSON = JSON(response.result.value)
+                    let currencyJSON : JSON = JSON(response.result.value!)
                     
                     self.updateCurrencyData(json: currencyJSON)
                     
                 } else {
-                    print("Error: \(response.result.error)")
+                    print("Error: \(String(describing: response.result.error))")
                     self.bitcoinPriceLabel.text = "Connection Issues"
                 }
         }
@@ -86,7 +92,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     func updateCurrencyData(json : JSON) {
         
     if let currencyResult = json["changes"]["price"]["day"].double {
-        
+        bitcoinPriceLabel.text = String(currencyResult)
     }
     else {
         bitcoinPriceLabel.text = "Currency Unavailable"
