@@ -14,8 +14,6 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     let currencyArray = ["AUD", "BRL","CAD","CNY","EUR","GBP","HKD","IDR","ILS","INR","JPY","MXN","NOK","NZD","PLN","RON","RUB","SEK","SGD","USD","ZAR"]
     
-    let currencyValue = [1.27, 3.19, 1.28, 6.66]
-    
     var finalURL = ""
 
     //Pre-setup IBOutlets
