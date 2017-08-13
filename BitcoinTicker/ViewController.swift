@@ -58,7 +58,8 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 //    
 //    //MARK: - Networking
 //    /***************************************************************/
-//    
+//   
+    
     func getCurrencyData(url: String) {
         
         Alamofire.request(url, method: .get)
@@ -78,28 +79,20 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         
     }
 //
-//    
-//    
-//    
-//    
 //    //MARK: - JSON Parsing
 //    /***************************************************************/
 //    
-//    func updateWeatherData(json : JSON) {
-//        
-//        let tempResult = json["main"]["temp"].double
-//        
-//        weatherData.temperature = Int(round(tempResult!) - 273.15)
-//        weatherData.city = json["name"].stringValue
-//        weatherData.condition = json["weather"][0]["id"].intValue
-//        weatherData.weatherIconName = weatherData.updateWeatherIcon(condition: weatherData.condition)
-//        
-//        updateUIWithWeatherData()
-//    }
-//    
+    
+    func updateCurrencyData(json : JSON) {
+        
+    if let currencyResult = json["changes"]["price"]["day"].double {
+        
+    }
+    else {
+        bitcoinPriceLabel.text = "Currency Unavailable"
+    }
 
 
-
-
+ }
+    
 }
-
